@@ -84,7 +84,11 @@ export async function POST(request: Request) {
         const result = streamText({
           model: myProvider.languageModel(selectedChatModel),
           system: systemPrompt({ selectedChatModel }),
-          messages,
+         messages: [
+          {
+            role: "system",
+            content: "คุณคือผู้ช่วยสอบ CISO ที่อบอุ่น ให้คำแนะนำแบบเข้าใจง่าย...",
+          },
           maxSteps: 5,
           experimental_activeTools:
             selectedChatModel === 'chat-model-reasoning'
